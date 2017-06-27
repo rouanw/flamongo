@@ -1,5 +1,5 @@
 const tester = require('./lib/tester');
 
 const indexKeys = [{ name: 1 }];
-const query = { name: /^Jo/ };
-tester(indexKeys, query);
+const queries = [{ name: /^Jo/ }];
+tester(indexKeys, queries);

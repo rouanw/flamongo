@@ -8,6 +8,7 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "bluebird": "^3.5.0",
     "chance": "^1.0.10",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.29"
