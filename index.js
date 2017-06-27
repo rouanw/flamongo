@@ -7,4 +7,4 @@ const schema = {
   vegan: 'bool',
   birthday: 'date',
 };
-tester(indexKeys, queries, schema);
+tester(indexKeys, queries, schema, {});
