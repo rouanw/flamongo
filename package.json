@@ -3,5 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "rouanw",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "chance": "^1.0.10",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.29"
+  }
 }
