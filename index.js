@@ -10,7 +10,10 @@ const schema = {
   vegan: 'bool',
   birthday: 'date',
   friends: [{
-    name: 'name',
+    name: {
+      first: 'first',
+      last: 'last',
+    },
   }],
 };
 tester(indexKeys, queries, schema, { verbose: true, stubData: true, numberOfRecords: 10 });
