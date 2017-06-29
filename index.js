@@ -9,5 +9,8 @@ const schema = {
   },
   vegan: 'bool',
   birthday: 'date',
+  friends: [{
+    name: 'name',
+  }],
 };
-tester(indexKeys, queries, schema, { verbose: true, stubData: true });
+tester(indexKeys, queries, schema, { verbose: true, stubData: true, numberOfRecords: 10 });
