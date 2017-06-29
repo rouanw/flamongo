@@ -1,7 +1,7 @@
 const tester = require('./lib/tester');
 
 const indexKeys = [{ 'name.first': 1 }, { birthday: 1 }];
-const queries = [{ 'name.first': /^J/, birthday: { $lte: Date() }, vegan: false, 'name.last': { $nin: ['Smith'] } }];
+const queries = [{'name.first': 'Richard'}, { 'name.first': 'John', vegan: false, 'name.last': { $nin: ['Smith'] } }];
 const schema = {
   name: {
     first: 'first',
@@ -16,4 +16,4 @@ const schema = {
     },
   }],
 };
-tester(indexKeys, queries, schema, { verbose: true, stubData: true, numberOfRecords: 10 });
+tester(indexKeys, queries, schema, { verbose: false, stubData: true });
