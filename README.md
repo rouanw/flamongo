@@ -4,6 +4,10 @@
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Creative-Tail-Animal-flamingo.svg/128px-Creative-Tail-Animal-flamingo.svg.png"/>
 
+[![Build Status](https://travis-ci.org/rouanw/build-window.svg?branch=master)](https://travis-ci.org/rouanw/build-window)
+[![GitHub license](https://img.shields.io/github/license/rouanw/build-window.svg)](https://github.com/rouanw/build-window/blob/master/LICENSE)
+[![npm version](https://badge.fury.io/js/flamongo.svg)](https://badge.fury.io/js/flamongo)
+
 ## What does Flamongo do?
 
 - Flamongo will pump a test collection full of stub data
