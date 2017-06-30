@@ -5,7 +5,8 @@
   "author": "rouanw",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "echo nothing_to_see_here"
   },
   "bin": {
     "flamongo": "bin/cli.js"
