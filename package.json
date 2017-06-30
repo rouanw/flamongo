@@ -1,5 +1,5 @@
 {
-  "name": "index-tester",
+  "name": "flamongo",
   "version": "1.0.0",
   "main": "index.js",
   "author": "rouanw",
@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "bin": {
-    "index-tester": "bin/cli.js"
+    "flamongo": "bin/cli.js"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
