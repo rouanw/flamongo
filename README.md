@@ -1,8 +1,8 @@
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Creative-Tail-Animal-flamingo.svg/128px-Creative-Tail-Animal-flamingo.svg.png"/>
-
 # Flamongo
 
 > A tool that helps you find the most efficient indexes for your MongoDB collections
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Creative-Tail-Animal-flamingo.svg/128px-Creative-Tail-Animal-flamingo.svg.png"/>
 
 ## What does Flamongo do?
 
