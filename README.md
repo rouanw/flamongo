@@ -72,7 +72,7 @@ Option|Description|Default
 `numberOfRecords` | Number of stub records to insert, using the specified `schema` | `90000`
 `verbose` | Print out the full output of MongoDB's [explain results](https://docs.mongodb.com/manual/reference/explain-results/) | `false`
 
-### Example output
+## Example output
 
 ```
 Connection open
