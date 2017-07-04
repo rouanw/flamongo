@@ -72,6 +72,49 @@ Option|Description|Default
 `numberOfRecords` | Number of stub records to insert, using the specified `schema` | `90000`
 `verbose` | Print out the full output of MongoDB's [explain results](https://docs.mongodb.com/manual/reference/explain-results/) | `false`
 
+### Example output
+
+```
+Connection open
+Created 2 indexes
+Inserting 90000 random documents
+
+  Results for query:
+  {"name.first":"John","vegan":false,"name.last":{"$nin":["Smith"]}}
+
+  The query took 0 milliseconds to run and returned 76 documents.
+  168 keys and 168 documents were examined.
+
+  Stages:
+
+  2. Retrieve documents (FETCH):
+  Took around 0  milliseconds and returned 76 documents
+  Examined 168 documents, using filter {"$and":[{"vegan":{"$eq":false}},{"$not":{"name.last":{"$in":["Smith"]}}}]}
+
+
+  1. Scan index keys (IXSCAN):
+  Took around 0  milliseconds and returned 168 documents
+  Examined 168 keys on index name.first_1 in a forward direction
+
+
+  Results for query:
+  {"name.first":"Richard"}
+
+  The query took 0 milliseconds to run and returned 180 documents.
+  180 keys and 180 documents were examined.
+
+  Stages:
+
+  2. Retrieve documents (FETCH):
+  Took around 0  milliseconds and returned 180 documents
+  Examined 180 documents
+
+
+  1. Scan index keys (IXSCAN):
+  Took around 0  milliseconds and returned 180 documents
+  Examined 180 keys on index name.first_1 in a forward direction
+
+```
 ---
 
 Logo: By Creative Tail [<a href="http://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File%3ACreative-Tail-Animal-flamingo.svg">via Wikimedia Commons</a>
