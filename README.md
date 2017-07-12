@@ -61,6 +61,45 @@ If you need to do something more complex, you can also specify a plain `.js` fil
 
 `indexKeys` and `schema` are optional if the `preserveData` option is specified (see below).
 
+### Schema
+
+The schema __flamongo__ uses loosely maps to functions offered by [Chance.js](http://chancejs.com/), with a few additional options. Here's an example schema that showcases some of the available functionality
+
+```js
+schema: {
+  widget: {
+    name: 'string',
+    storeId: {
+      _type: 'enum',
+      options: [543, 999, 1232, 110],
+    },
+    deleted: {
+      _type: 'bool',
+      args: {
+        likelihood: 5,
+      },
+    },
+    startDate: 'date',
+    outOfStock: {
+      _type: 'bool',
+      args: {
+        likelihood: 10,
+      },
+    },
+    discountable: {
+      _type: 'bool',
+      args: {
+        likelihood: 90,
+      },
+    },
+  },
+  status: {
+    _type: 'enum',
+    options: ['new', 'active', 'cancelled', ''],
+  },
+},
+```
+
 ## Options
 
 Option|Description|Default
