@@ -9,6 +9,11 @@ const schema = {
   },
   vegan: 'bool',
   birthday: 'date',
+  jobTitle: {
+    _type: 'enum',
+    _exists: 30,
+    options: ['software developer', 'football player'],
+  },
   friends: [{
     name: {
       first: 'first',
