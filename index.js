@@ -11,7 +11,7 @@ const schema = {
   birthday: 'date',
   jobTitle: {
     _type: 'enum',
-    _missing: 30,
+    _exists: 30,
     options: ['software developer', 'football player'],
   },
   friends: [{
