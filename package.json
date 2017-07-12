@@ -4,6 +4,10 @@
   "main": "index.js",
   "author": "rouanw",
   "license": "MIT",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/rouanw/flamongo"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "echo nothing_to_see_here"
