@@ -89,6 +89,13 @@ process-nextick-args@~1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-1.0.7.tgz#150e20b756590ad3f91093f25a4f2ad8bff30ba3"
 
+randoc@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/randoc/-/randoc-0.0.1.tgz#65ccf628856e5448079648b16827760d9ad3b32f"
+  dependencies:
+    chance "^1.0.10"
+    lodash "^4.17.4"
+
 readable-stream@2.2.7:
   version "2.2.7"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.2.7.tgz#07057acbe2467b22042d36f98c5ad507054e95b1"

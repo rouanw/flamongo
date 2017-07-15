@@ -4,9 +4,9 @@
   "main": "lib/tester.js",
   "author": "rouanw",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/rouanw/flamongo"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rouanw/flamongo"
   },
   "scripts": {
     "start": "node index.js",
@@ -18,9 +18,9 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "chalk": "^1.1.3",
-    "chance": "^1.0.10",
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
-    "mongodb": "^2.2.29"
+    "mongodb": "^2.2.29",
+    "randoc": "^0.0.1"
   }
 }
