@@ -1,0 +1,39 @@
+{
+  "indexKeys": [
+    { "shiftData.shiftId": 1 },
+    { "shiftData.employerId": 1, "details.status": 1, "shiftData.published": 1, "shiftData.deleted": 1 },
+    { "shiftData.employerId": 1, "details.status": 1, "shiftData.deleted": 1, "shiftData.startDate": 1 },
+    { "shiftData.employerId": 1, "shiftData.deleted": 1 }
+  ],
+  "queries": [
+    {
+      "shiftData.published": true,
+      "shiftData.deleted": false,
+      "shiftData.employerId": 12345,
+      "$or": [
+        { "details.status": { "$nin": ["approved", "rejected", "queried"] } },
+        { "details.status": "rejected", "shiftData.cancelled": false },
+        { "details.status": "queried", "shiftData.cancelled": false }
+      ]
+    }
+  ],
+  "schema": {
+    "shiftData": {
+      "shiftId": "string",
+      "employerId": {
+        "_type": "enum",
+        "options": [12345, 999, 1232, 110]
+      },
+      "published": "bool",
+      "deleted": "bool",
+      "startDate": "date",
+      "cancelled": "bool"
+    },
+    "details": {
+      "status": {
+        "_type": "enum",
+        "options": ["approved", "rejected", "queried", ""]
+      }
+    }
+  }
+}
