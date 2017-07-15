@@ -104,7 +104,7 @@ schema: {
 
 Option|Description|Default
 ---|---|---
-`url`|URL of Mongo server. Note that Flamongo is meant for testing. By default, Flamongo is destructive. Use `preserveData` and be careful if you're planning to point it at your production server. |`mongodb://localhost:27017`
+`url`|URL of Mongo server. Note that Flamongo is meant for testing. See the Mongo [Connection String](https://docs.mongodb.com/manual/reference/connection-string/) docs for the URL format. By default, Flamongo is destructive. Use `preserveData` and be careful if you're planning to point it at your production server.|`mongodb://localhost:27017`
 `databaseName` | Name of database to use | `test_indexes_db`
 `collectionName` | Name of collection to use | `test_indexes_collection`
 `preserveData` | When `true`, Flamongo will not create or drop indexes, or remove or insert data | `false`
