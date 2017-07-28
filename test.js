@@ -29,18 +29,19 @@ test('flamongo', function (t) {
   };
 
   const indexKeys = [
-    { 'name.first': 1 },
-    { birthday: 1 }
+    { 'name.last': 1 },
+    { 'name.last': 1, vegan: 1 },
+    { 'name.first': 1, vegan: 1 },
   ];
 
   const queries = [
-    {'name.first': 'Richard'},
+    { 'name.first': 'Richard' },
     { 'name.first': 'John', vegan: false, 'name.last': { $nin: ['Smith'] } }
   ];
 
   flamongo(indexKeys, queries, schema, { verbose: false, preserveData: false })
     .then((queryResults) => {
-      const indexUseRegex = /.*Examined [\d]+ keys on index name.first_1 in a forward direction.*/;
+      const indexUseRegex = /.*Examined [\d]+ keys on index name.first_1_vegan_1 in a forward direction.*/;
       t.ok(indexUseRegex.test(strip(queryResults[1].output)));
       t.end();
     });
