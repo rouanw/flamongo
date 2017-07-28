@@ -154,6 +154,11 @@ Inserting 90000 random documents
   Examined 180 keys on index name.first_1 in a forward direction
 
 ```
+
+## Further reading
+
+Reading the Mongo Docs on [Index Strategies](https://docs.mongodb.com/manual/applications/indexes/) will help you understand what factors influence how performant an index is. Some queries will actually be faster without any indexes!
+
 ---
 
 Logo: By Creative Tail [<a href="http://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File%3ACreative-Tail-Animal-flamingo.svg">via Wikimedia Commons</a>
