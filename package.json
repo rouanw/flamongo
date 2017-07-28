@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo nothing_to_see_here"
+    "test": "echo no mongo instance so these do not run on travis yet"
   },
   "bin": {
     "flamongo": "bin/cli.js"
@@ -22,5 +22,9 @@
     "minimist": "^1.2.0",
     "mongodb": "^2.2.29",
     "randoc": "^0.0.1"
+  },
+  "devDependencies": {
+    "strip-ansi": "^4.0.0",
+    "tape": "^4.7.0"
   }
 }
