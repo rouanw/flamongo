@@ -11,6 +11,10 @@ test('flamongo', function (t) {
       last: 'last',
     },
     vegan: 'bool',
+    happy: {
+      _type: 'bool',
+      args: { likelihood: 10 },
+    },
     birthday: 'date',
     jobTitle: {
       _type: 'enum',
