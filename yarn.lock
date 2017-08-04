@@ -140,6 +140,12 @@ has@^1.0.1, has@~1.0.1:
   dependencies:
     function-bind "^1.0.2"
 
+index-mixer@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/index-mixer/-/index-mixer-0.1.0.tgz#d94c7699f3d017524072a4ca86faf0b7daa9e72b"
+  dependencies:
+    js-combinatorics "^0.5.2"
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -176,6 +182,10 @@ is-symbol@^1.0.1:
 isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
+
+js-combinatorics@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/js-combinatorics/-/js-combinatorics-0.5.2.tgz#f060749232ea1b770076ff97aed6cfa9ab41b8f4"
 
 lodash@^4.17.4:
   version "4.17.4"

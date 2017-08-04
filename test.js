@@ -2,10 +2,7 @@ const test = require('tape');
 const strip = require('strip-ansi');
 const flamongo = require('./lib/tester');
 
-test('flamongo', function (t) {
-  t.plan(1);
-
-  const schema = {
+const schema = {
     name: {
       first: 'first',
       last: 'last',
@@ -28,6 +25,9 @@ test('flamongo', function (t) {
     }],
   };
 
+test('check performance of provided indexes', function (t) {
+  t.plan(1);
+
   const indexKeys = [
     { 'name.last': 1 },
     { 'name.last': 1, vegan: 1 },
@@ -45,4 +45,20 @@ test('flamongo', function (t) {
       t.ok(indexUseRegex.test(strip(queryResults[1].output)));
       t.end();
     });
+});
+
+test('check performance of all possible indexes', function (t) {
+  t.plan(2);
+
+  const queries = [
+    { 'name.first': 'Richard', vegan: false },
+  ];
+
+  flamongo([], queries, schema, { verbose: false, preserveData: false, bestIndex: true })
+    .then((indexResults) => {
+      t.ok(indexResults[0].id);
+      t.ok(indexResults[0].time || indexResults[0].time === 0);
+      t.end();
+    })
+    .catch((error) => { throw error });
 });
