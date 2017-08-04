@@ -1,8 +1,12 @@
 flamongo:
   - don't print query output while figuring out the best index
-  - print results in a table
+  - print results in a table (name, 'executionTimeMillis', 'totalKeysExamined', 'totalDocsExamined', 'nReturned')
+  - sort by more than just time
   - print summarised result
   - deal with index errors - e.g. names that are too long
   - check best index for multiple queries
+  - change API so indexKeys dont need to be passed in
   - ensure that results aren't being skewed by previous queries, caches etc.
   - remove duplicate index drop
+  - see if we need the NS error check
+  - consider only printing the top 5 or 10 winners (could provide an opt for seeing all)
