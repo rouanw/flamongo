@@ -1,6 +1,4 @@
 flamongo:
-  - print summarised result
-  - deal with index errors - e.g. names that are too long
   - check best index for multiple queries
   - change API so indexKeys dont need to be passed in
   - ensure that results aren't being skewed by previous queries, caches etc.
