@@ -1,6 +1,4 @@
 flamongo:
-  - don't print query output while figuring out the best index
-  - print results in a table (name, 'executionTimeMillis', 'totalKeysExamined', 'totalDocsExamined', 'nReturned')
   - sort by more than just time
   - print summarised result
   - deal with index errors - e.g. names that are too long
@@ -10,3 +8,4 @@ flamongo:
   - remove duplicate index drop
   - see if we need the NS error check
   - consider only printing the top 5 or 10 winners (could provide an opt for seeing all)
+  - see if dropping indexes before stubbing data is faster

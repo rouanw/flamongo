@@ -51,6 +51,17 @@ chance@^1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.10.tgz#03500b04ad94e778dd2891b09ec73a6ad87b1996"
 
+clone@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
+
+columnify@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/columnify/-/columnify-1.5.4.tgz#4737ddf1c7b69a8a7c340570782e947eec8e78bb"
+  dependencies:
+    strip-ansi "^3.0.0"
+    wcwidth "^1.0.0"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -62,6 +73,12 @@ core-util-is@~1.0.0:
 deep-equal@~1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
+
+defaults@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/defaults/-/defaults-1.0.3.tgz#c656051e9817d9ff08ed881477f3fe4019f3ef7d"
+  dependencies:
+    clone "^1.0.2"
 
 define-properties@^1.1.2:
   version "1.1.2"
@@ -347,6 +364,12 @@ through@~2.3.4, through@~2.3.8:
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
+
+wcwidth@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/wcwidth/-/wcwidth-1.0.1.tgz#f0b0dcf915bc5ff1528afadb2c0e17b532da2fe8"
+  dependencies:
+    defaults "^1.0.3"
 
 wrappy@1:
   version "1.0.2"
