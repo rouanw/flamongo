@@ -51,14 +51,14 @@ test('check performance of all possible indexes', function (t) {
   t.plan(2);
 
   const queries = [
-    { 'name.first': 'Richard', vegan: false, birthday: {$gt: new Date() } },
+    { 'name.first': 'Richard' },
+    { 'name.first': 'Richard', vegan: false, birthday: { $gt: new Date() } },
   ];
 
   flamongo([], queries, schema, { bestIndex: true, preserveData: false })
     .then((indexResults) => {
-      t.ok(indexResults[0].metadata.name);
-      t.ok(indexResults[0].time || indexResults[0].time === 0);
+      t.ok(indexResults[0][0].metadata.name);
+      t.ok(indexResults[0][0].time || indexResults[0][0].time === 0);
       t.end();
     })
-    .catch((error) => { throw error });
 });
