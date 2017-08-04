@@ -1,5 +1,4 @@
 flamongo:
-  - sort by more than just time
   - print summarised result
   - deal with index errors - e.g. names that are too long
   - check best index for multiple queries
