@@ -1,0 +1,8 @@
+flamongo:
+  - don't print query output while figuring out the best index
+  - print results in a table
+  - print summarised result
+  - deal with index errors - e.g. names that are too long
+  - check best index for multiple queries
+  - ensure that results aren't being skewed by previous queries, caches etc.
+  - remove duplicate index drop
