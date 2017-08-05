@@ -39,7 +39,7 @@ test('check performance of provided indexes', function (t) {
     { 'name.first': 'John', vegan: false, 'name.last': { $nin: ['Smith'] } }
   ];
 
-  flamongo(indexKeys, queries, schema, { verbose: false, preserveData: false })
+  flamongo(indexKeys, queries, schema, { verbose: false, preserveData: true })
     .then((queryResults) => {
       const indexUseRegex = /.*Examined [\d]+ keys on index name.first_1_vegan_1 in a forward direction.*/;
       t.ok(indexUseRegex.test(strip(queryResults[1].output)));
@@ -56,7 +56,7 @@ test('check performance of all possible indexes', function (t) {
     { 'name.first': 'Richard', $or: [{ vegan: false }, { happy: true }] },
   ];
 
-  flamongo([], queries, schema, { bestIndex: true, preserveData: false })
+  flamongo([], queries, schema, { bestIndex: true, preserveData: true })
     .then((indexResults) => {
       t.ok(indexResults[0][0].metadata.name);
       t.ok(indexResults[0][0].time || indexResults[0][0].time === 0);
