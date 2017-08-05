@@ -157,9 +157,9 @@ has@^1.0.1, has@~1.0.1:
   dependencies:
     function-bind "^1.0.2"
 
-index-mixer@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/index-mixer/-/index-mixer-0.1.0.tgz#d94c7699f3d017524072a4ca86faf0b7daa9e72b"
+index-mixer@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/index-mixer/-/index-mixer-0.2.0.tgz#7c711ac72d2ee2614750500a59d44a6e3f1704a0"
   dependencies:
     js-combinatorics "^0.5.2"
 

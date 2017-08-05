@@ -53,6 +53,7 @@ test('check performance of all possible indexes', function (t) {
   const queries = [
     { 'name.first': 'Richard' },
     { 'name.first': 'Richard', vegan: false, birthday: { $gt: new Date() } },
+    { 'name.first': 'Richard', $or: [{ vegan: false }, { happy: true }] },
   ];
 
   flamongo([], queries, schema, { bestIndex: true, preserveData: false })
