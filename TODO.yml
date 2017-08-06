@@ -1,5 +1,0 @@
-flamongo:
-  - change API so indexKeys dont need to be passed in
-  - ensure that results aren't being skewed by previous queries, caches etc.
-  - remove duplicate index drop
-  - see if dropping indexes before stubbing data is faster / see if we need the NS error check
