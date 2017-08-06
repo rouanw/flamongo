@@ -6,8 +6,13 @@ const flamongo = require('../lib');
 
 /* eslint-disable import/no-dynamic-require, no-console */
 const getCommand = (c) => {
-  if (flamongo[c]) {
-    return flamongo[c];
+  const availableCommands = {
+    best: flamongo.bestIndex,
+    'best-index': flamongo.bestIndex,
+    explain: flamongo.explain,
+  };
+  if (availableCommands[c]) {
+    return availableCommands[c];
   }
   console.error(`${c} is not a valid flamongo command`);
   return process.exit(1);

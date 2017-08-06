@@ -12,7 +12,7 @@
 
 If you want to figure out how to make your MongoDB queries more performant by finding the best indexes, you've come to the right place.
 
-`flamongo best` finds the best MongoDB index for each of your queries.
+`flamongo best-index` finds the best MongoDB index for each of your queries.
 
 `flamongo explain` provides you with helpful, human-readable stats on how a your MongoDB indexes perform for your queries.
 
@@ -29,12 +29,12 @@ $ npm install -g flamongo
 
 ## API
 
-### `best`
+### `best-index`
 
 Find the fastest index based on your queries and data.
 
 ```
-$ flamongo best input.json
+$ flamongo best-index input.json
 ```
 
 Where `input.json` looks something like:
@@ -97,6 +97,18 @@ Rank  |  Index                             |  Time (ms)  |  Documents examined  
 8     |  vegan_1_name.last_1               |  91         |  44761               |  44763
 9     |  name.last_1_vegan_1               |  94         |  44761               |  45261
 10    |  name.last_1                       |  164        |  89811               |  89812
+```
+
+#### Alias
+
+`flamongo best`
+
+#### Programmatic API
+
+```js
+const flamongo = require('flamongo');
+flamongo.bestIndex(input, options, /* optional logging function */)
+  .then((results) => { /* use results */ });
 ```
 
 ### `explain`
@@ -177,6 +189,14 @@ Took around 0  milliseconds and returned 83 documents
 Examined 83 keys on index name.first_1_vegan_1 in a forward direction
 ```
 
+#### Programmatic API
+
+```js
+const flamongo = require('flamongo');
+flamongo.explain(input, options, /* optional logging function */)
+  .then((results) => { /* use results */ });
+```
+
 ## Input format
 
 - `queries`: An array of queries to run against your Mongo collection. Flamongo will output stats for each one in turn.
@@ -232,7 +252,7 @@ Option|Description|Default
 `databaseName` | Name of database to use | `test_indexes_db`
 `collectionName` | Name of collection to use | `test_indexes_collection`
 `preserveData` | When `true`, Flamongo will not insert or remove data | `false`
-`preserveIndexes` | When `true`, Flamongo will not create or drop indexes. Note that this option will __not__ be honoured by `flamongo best`, which will always drop and create indexes. | `false`
+`preserveIndexes` | When `true`, Flamongo will not create or drop indexes. Note that this option will __not__ be honoured by `flamongo best-index`, which will always drop and create indexes. | `false`
 `numberOfRecords` | Number of stub records to insert, using the specified `schema` | `90000`
 `verbose` | Print out the full output of MongoDB's [explain results](https://docs.mongodb.com/manual/reference/explain-results/) | `false`
 

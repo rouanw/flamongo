@@ -57,7 +57,7 @@ test('check performance of all possible indexes', (t) => {
     { 'name.first': 'Richard', $or: [{ vegan: false }, { happy: true }] },
   ];
 
-  flamongo.best({ queries, schema }, { preserveData: true }, console.log)
+  flamongo.bestIndex({ queries, schema }, { preserveData: true }, console.log)
     .then((indexResults) => {
       t.ok(indexResults[0][0].metadata.name);
       t.ok(indexResults[0][0].time || indexResults[0][0].time === 0);
