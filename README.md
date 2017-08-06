@@ -231,7 +231,8 @@ Option|Description|Default
 `url`|URL of Mongo server. Note that Flamongo is meant for testing. See the Mongo [Connection String](https://docs.mongodb.com/manual/reference/connection-string/) docs for the URL format. By default, Flamongo is destructive. Use `preserveData` and be careful if you're planning to point it at your production server.|`mongodb://localhost:27017`
 `databaseName` | Name of database to use | `test_indexes_db`
 `collectionName` | Name of collection to use | `test_indexes_collection`
-`preserveData` | When `true`, Flamongo will not create or drop indexes, or remove or insert data | `false`
+`preserveData` | When `true`, Flamongo will not insert or remove data | `false`
+`preserveIndexes` | When `true`, Flamongo will not create or drop indexes. Note that this option will __not__ be honoured by `flamongo best`, which will always drop and create indexes. | `false`
 `numberOfRecords` | Number of stub records to insert, using the specified `schema` | `90000`
 `verbose` | Print out the full output of MongoDB's [explain results](https://docs.mongodb.com/manual/reference/explain-results/) | `false`
 
