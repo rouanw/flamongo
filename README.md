@@ -24,7 +24,7 @@ If you want to figure out how to make your MongoDB queries more performant by fi
 ## Install
 
 ```sh
-$ npm install -g flamongo
+$ npm install flamongo
 ```
 
 ## API
