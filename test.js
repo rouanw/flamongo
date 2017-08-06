@@ -1,6 +1,6 @@
 const test = require('tape');
 const strip = require('strip-ansi');
-const flamongo = require('./lib/tester');
+const flamongo = require('./lib');
 
 const schema = {
     name: {

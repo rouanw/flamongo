@@ -1,7 +1,7 @@
 {
   "name": "flamongo",
   "version": "0.4.3",
-  "main": "lib/tester.js",
+  "main": "lib/index.js",
   "author": "rouanw",
   "license": "MIT",
   "repository": {
