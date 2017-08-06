@@ -10,16 +10,101 @@
 
 ## What does Flamongo do?
 
+If you want to figure out how to make your MongoDB queries more performant by finding the best indexes, you've come to the right place.
+
+`flamongo best` finds the best MongoDB index for each of your queries.
+
+`flamongo explain` provides you with helpful, human-readable stats on how a your MongoDB indexes perform for your queries.
+
 - Flamongo will pump a test collection full of stub data
-- Create the indexes you specify
+- Depending on the command you're running, flamongo will either create the indexes you've specified or create every possible index in turn
 - Run your queries against the test collection
 - Print out useful information and statistics, which will help you decide which indexes are best for your needs
 
-## Getting started
+## Install
 
 ```sh
 $ npm install -g flamongo
-$ flamongo input.json
+```
+
+## API
+
+### `best`
+
+Find the fastest index based on your queries and data.
+
+```
+$ flamongo best input.json
+```
+
+Where `input.json` looks something like:
+
+```json
+{
+  "queries": [
+    { "name.first": "Richard", "vegan": true },
+    { "name.first": "John", "vegan": false, "name.last": { "$nin": ["Smith"] } }
+  ],
+  "schema": {
+    "name": {
+      "first": "first",
+      "last": "last"
+    },
+    "vegan": "bool",
+    "birthday": "date",
+    "friends": [{
+      "name": {
+        "first": "first",
+        "last": "last"
+      }
+    }]
+  }
+}
+```
+
+Example output:
+
+```sh
+Connection open
+---------------------------------------------------------------------------------------------
+Running the following query against 4 indexes to find the best index:
+{"name.first":"Richard","vegan":true}
+
+The best index based on your input appears to be vegan_1_name.first_1, which took 0 milliseconds. (102 documents were returned.)
+You can create the index using this key: {"vegan":1,"name.first":1}
+
+Rank  |  Index                 |  Time (ms)  |  Documents examined  |  Keys examined
+1     |  vegan_1_name.first_1  |  0          |  102                 |  102
+2     |  name.first_1_vegan_1  |  1          |  102                 |  102
+3     |  name.first_1          |  1          |  182                 |  182
+4     |  vegan_1               |  53         |  45141               |  45141
+
+---------------------------------------------------------------------------------------------
+Running the following query against 15 indexes to find the best index:
+{"name.first":"John","vegan":false,"name.last":{"$nin":["Smith"]}}
+
+The best index based on your input appears to be vegan_1_name.first_1, which took 1 milliseconds. (86 documents were returned.)
+You can create the index using this key: {"vegan":1,"name.first":1}
+
+Rank  |  Index                             |  Time (ms)  |  Documents examined  |  Keys examined
+1     |  vegan_1_name.first_1              |  1          |  86                  |  86
+2     |  name.first_1_vegan_1_name.last_1  |  1          |  86                  |  87
+3     |  name.first_1                      |  1          |  161                 |  161
+4     |  name.first_1_name.last_1          |  1          |  161                 |  162
+5     |  name.last_1_name.first_1          |  9          |  161                 |  1160
+6     |  name.first_1_vegan_1              |  11         |  86                  |  86
+7     |  vegan_1                           |  52         |  44859               |  44859
+8     |  vegan_1_name.last_1               |  91         |  44761               |  44763
+9     |  name.last_1_vegan_1               |  94         |  44761               |  45261
+10    |  name.last_1                       |  164        |  89811               |  89812
+```
+
+### `explain`
+
+Explain how your queries perform against the provided indexes.
+
+```
+$ flamongo explain input.json
 ```
 
 Where `input.json` looks something like:
@@ -51,15 +136,54 @@ Where `input.json` looks something like:
 }
 ```
 
-If you need to do something more complex, you can also specify a plain `.js` file that exports (i.e. `module.exports =`) a similar object.
+Example output:
+
+```sh
+Connection open
+Inserting 90000 random documents
+Created 3 indexes
+
+Results for query:
+{"name.first":"Richard"}
+
+The query took 1 milliseconds to run and returned 167 documents.
+167 keys and 167 documents were examined.
+
+Stages:
+
+2. Retrieve documents (FETCH):
+Took around 10  milliseconds and returned 167 documents
+Examined 167 documents
+
+1. Scan index keys (IXSCAN):
+Took around 10  milliseconds and returned 167 documents
+Examined 167 keys on index name.first_1_vegan_1 in a forward direction
+
+
+Results for query:
+{"name.first":"John","vegan":false,"name.last":{"$nin":["Smith"]}}
+
+The query took 2 milliseconds to run and returned 83 documents.
+83 keys and 83 documents were examined.
+
+Stages:
+
+2. Retrieve documents (FETCH):
+Took around 0  milliseconds and returned 83 documents
+Examined 83 documents, using filter {"$not":{"name.last":{"$in":["Smith"]}}}
+
+1. Scan index keys (IXSCAN):
+Took around 0  milliseconds and returned 83 documents
+Examined 83 keys on index name.first_1_vegan_1 in a forward direction
+```
 
 ## Input format
 
-- `indexKeys`: An array of indexes to create
 - `queries`: An array of queries to run against your Mongo collection. Flamongo will output stats for each one in turn.
-- `schema`: A schema that Flamongo will use to fill a test collection with data. The type descriptions map to [Chance.js](http://chancejs.com/) generators.
+- `schema`: A schema that Flamongo will use to fill a test collection with data. The type descriptions map to [Chance.js](http://chancejs.com/) generators. Optional if the `preserveData` option is specified (see below).
+- `indexKeys`: An array of indexes to create. Only used for `flamongo explain`.
 
-`indexKeys` and `schema` are optional if the `preserveData` option is specified (see below).
+If you need to do something more complex, you can also specify a plain `.js` file that exports (i.e. `module.exports =`) a similar object.
 
 ### Schema
 
@@ -110,50 +234,6 @@ Option|Description|Default
 `preserveData` | When `true`, Flamongo will not create or drop indexes, or remove or insert data | `false`
 `numberOfRecords` | Number of stub records to insert, using the specified `schema` | `90000`
 `verbose` | Print out the full output of MongoDB's [explain results](https://docs.mongodb.com/manual/reference/explain-results/) | `false`
-
-## Example output
-
-```
-Connection open
-Created 2 indexes
-Inserting 90000 random documents
-
-  Results for query:
-  {"name.first":"John","vegan":false,"name.last":{"$nin":["Smith"]}}
-
-  The query took 0 milliseconds to run and returned 76 documents.
-  168 keys and 168 documents were examined.
-
-  Stages:
-
-  2. Retrieve documents (FETCH):
-  Took around 0  milliseconds and returned 76 documents
-  Examined 168 documents, using filter {"$and":[{"vegan":{"$eq":false}},{"$not":{"name.last":{"$in":["Smith"]}}}]}
-
-
-  1. Scan index keys (IXSCAN):
-  Took around 0  milliseconds and returned 168 documents
-  Examined 168 keys on index name.first_1 in a forward direction
-
-
-  Results for query:
-  {"name.first":"Richard"}
-
-  The query took 0 milliseconds to run and returned 180 documents.
-  180 keys and 180 documents were examined.
-
-  Stages:
-
-  2. Retrieve documents (FETCH):
-  Took around 0  milliseconds and returned 180 documents
-  Examined 180 documents
-
-
-  1. Scan index keys (IXSCAN):
-  Took around 0  milliseconds and returned 180 documents
-  Examined 180 keys on index name.first_1 in a forward direction
-
-```
 
 ## Further reading
 
