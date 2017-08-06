@@ -10,7 +10,8 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo no mongo instance so these do not run on travis yet"
+    "test": "echo no mongo instance so these do not run on travis yet",
+    "lint": "eslint ."
   },
   "bin": {
     "flamongo": "bin/cli.js"
@@ -26,6 +27,9 @@
     "randoc": "^0.0.1"
   },
   "devDependencies": {
+    "eslint": "^4.4.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
     "strip-ansi": "^4.0.0",
     "tape": "^4.7.0"
   }
