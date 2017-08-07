@@ -207,13 +207,16 @@ If you need to do something more complex, you can also specify a plain `.js` fil
 
 ### Schema
 
-The schema __flamongo__ uses loosely maps to functions offered by [Chance.js](http://chancejs.com/), with a few additional options. Here's an example schema that showcases some of the available functionality
+The schema __flamongo__ uses (via [`randoc`](https://www.npmjs.com/package/randoc)) loosely maps to functions offered by [Chance.js](http://chancejs.com/), with a few additional options. Here's an example schema that showcases some of the available functionality
 
 ```js
 schema: {
   widget: {
     name: 'string',
-    storeId: {
+    inventor: 'name',
+    dateObtained: 'date',
+    discountable: 'bool',
+    warehouseId: {
       _type: 'enum',
       options: [543, 999, 1232, 110],
     },
@@ -223,17 +226,10 @@ schema: {
         likelihood: 5,
       },
     },
-    startDate: 'date',
     outOfStock: {
       _type: 'bool',
       args: {
         likelihood: 10,
-      },
-    },
-    discountable: {
-      _type: 'bool',
-      args: {
-        likelihood: 90,
       },
     },
   },
@@ -248,7 +244,7 @@ schema: {
 
 Option|Description|Default
 ---|---|---
-`url`|URL of Mongo server. Note that Flamongo is meant for testing. See the Mongo [Connection String](https://docs.mongodb.com/manual/reference/connection-string/) docs for the URL format. By default, Flamongo is destructive. Use `preserveData` and be careful if you're planning to point it at your production server.|`mongodb://localhost:27017`
+`url`|URL of Mongo server. Note that Flamongo is meant for testing. See the Mongo [Connection String](https://docs.mongodb.com/manual/reference/connection-string/) docs for the URL format. By default, Flamongo is destructive. Use `preserveData` and `preserveIndexes` and be careful if you're planning to point it at your production server.|`mongodb://localhost:27017`
 `databaseName` | Name of database to use | `test_indexes_db`
 `collectionName` | Name of collection to use | `test_indexes_collection`
 `preserveData` | When `true`, Flamongo will not insert or remove data | `false`
