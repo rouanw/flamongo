@@ -256,6 +256,14 @@ Option|Description|Default
 
 Reading the Mongo Docs on [Index Strategies](https://docs.mongodb.com/manual/applications/indexes/) will help you understand what factors influence how performant an index is. Some queries will actually be faster without any indexes!
 
+## Helpful queries
+
+Here are some queries you can run against your collection to see how your indexes are being used:
+
+- `db.collection.aggregate( [ { $indexStats: { } } ] )` - usage info for each index
+- `db.collection.stats().indexSizes` - memory size of each index
+- `db.collection.totalIndexSize()` - total memory used by indexes
+
 ---
 
 Logo: By Creative Tail [<a href="http://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>], <a href="https://commons.wikimedia.org/wiki/File%3ACreative-Tail-Animal-flamingo.svg">via Wikimedia Commons</a>
