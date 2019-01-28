@@ -24,7 +24,7 @@ If you want to figure out how to make your MongoDB queries more performant by fi
 ## Install
 
 ```sh
-$ npm install flamongo
+$ npm install -g flamongo
 ```
 
 ## API
@@ -110,6 +110,10 @@ const flamongo = require('flamongo');
 flamongo.bestIndex(input, options, /* optional logging function */)
   .then((results) => { /* use results */ });
 ```
+
+#### Performance
+
+`flamongo` is not yet clever enough to guess which indexes to try first, so it just tries every possible one. Note that due to the nature of [combinatorics](https://en.wikipedia.org/wiki/Enumerative_combinatorics), queries with many search terms will result in a huge number of [permutations](https://en.wikipedia.org/wiki/Permutation). 4 search terms will test 64 indexes, which will be slow but fine. 5 terms will need to check 325 indexes, which is a really long wait. Anything more than that is not worth doing.
 
 ### `explain`
 
