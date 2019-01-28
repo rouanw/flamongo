@@ -1,12 +1,24 @@
 {
   "name": "flamongo",
   "version": "1.0.2",
+  "description": "A tool that helps you find the most efficient indexes for your MongoDB collections",
   "main": "lib/index.js",
   "author": "rouanw",
   "license": "MIT",
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "index",
+    "performance",
+    "collection"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/rouanw/flamongo"
+  },
+  "homepage": "https://rouanw.github.io/flamongo/",
+  "bugs": {
+    "url": "https://github.com/rouanw/flamongo/issues"
   },
   "scripts": {
     "start": "node index.js",
