@@ -1,6 +1,6 @@
 {
   "name": "flamongo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A tool that helps you find the most efficient indexes for your MongoDB collections",
   "main": "lib/index.js",
   "author": "rouanw",
