@@ -22,7 +22,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo no mongo instance so these do not run on travis yet",
+    "test": "node test.js",
     "lint": "eslint ."
   },
   "bin": {
