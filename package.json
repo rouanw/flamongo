@@ -36,7 +36,7 @@
     "lodash": "^4.17.4",
     "minimist": "^1.2.0",
     "mongodb": "^2.2.29",
-    "randoc": "^0.0.1"
+    "randoc": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^4.4.0",
