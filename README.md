@@ -12,9 +12,9 @@
 
 If you want to figure out how to make your MongoDB queries more performant by finding the best indexes, you've come to the right place.
 
-`flamongo best-index` finds the best MongoDB index for each of your queries.
-
 `flamongo explain` provides you with helpful, human-readable stats on how a your MongoDB indexes perform for your queries.
+
+`flamongo best-index` finds the best MongoDB index for each of your queries.
 
 - Flamongo will pump a test collection full of stub data
 - Depending on the command you're running, flamongo will either create the indexes you've specified or create every possible index in turn
@@ -28,92 +28,6 @@ $ npm install -g flamongo
 ```
 
 ## API
-
-### `best-index`
-
-Find the fastest index based on your queries and data.
-
-```
-$ flamongo best-index input.json
-```
-
-Where `input.json` looks something like:
-
-```json
-{
-  "queries": [
-    { "name.first": "Richard", "vegan": true },
-    { "name.first": "John", "vegan": false, "name.last": { "$nin": ["Smith"] } }
-  ],
-  "schema": {
-    "name": {
-      "first": "first",
-      "last": "last"
-    },
-    "vegan": "bool",
-    "birthday": "date",
-    "friends": [{
-      "name": {
-        "first": "first",
-        "last": "last"
-      }
-    }]
-  }
-}
-```
-
-Example output:
-
-```sh
-Connection open
----------------------------------------------------------------------------------------------
-Running the following query against 4 indexes to find the best index:
-{"name.first":"Richard","vegan":true}
-
-The best index based on your input appears to be vegan_1_name.first_1, which took 0 milliseconds. (102 documents were returned.)
-You can create the index using this key: {"vegan":1,"name.first":1}
-
-Rank  |  Index                 |  Time (ms)  |  Documents examined  |  Keys examined
-1     |  vegan_1_name.first_1  |  0          |  102                 |  102
-2     |  name.first_1_vegan_1  |  1          |  102                 |  102
-3     |  name.first_1          |  1          |  182                 |  182
-4     |  vegan_1               |  53         |  45141               |  45141
-
----------------------------------------------------------------------------------------------
-Running the following query against 15 indexes to find the best index:
-{"name.first":"John","vegan":false,"name.last":{"$nin":["Smith"]}}
-
-The best index based on your input appears to be vegan_1_name.first_1, which took 1 milliseconds. (86 documents were returned.)
-You can create the index using this key: {"vegan":1,"name.first":1}
-
-Rank  |  Index                             |  Time (ms)  |  Documents examined  |  Keys examined
-1     |  vegan_1_name.first_1              |  1          |  86                  |  86
-2     |  name.first_1_vegan_1_name.last_1  |  1          |  86                  |  87
-3     |  name.first_1                      |  1          |  161                 |  161
-4     |  name.first_1_name.last_1          |  1          |  161                 |  162
-5     |  name.last_1_name.first_1          |  9          |  161                 |  1160
-6     |  name.first_1_vegan_1              |  11         |  86                  |  86
-7     |  vegan_1                           |  52         |  44859               |  44859
-8     |  vegan_1_name.last_1               |  91         |  44761               |  44763
-9     |  name.last_1_vegan_1               |  94         |  44761               |  45261
-10    |  name.last_1                       |  164        |  89811               |  89812
-```
-
-#### Alias
-
-`flamongo best`
-
-#### Programmatic API
-
-```js
-const flamongo = require('flamongo');
-flamongo.bestIndex(input, options, /* optional logging function */)
-  .then((results) => { /* use results */ });
-```
-
-#### Performance
-
-`flamongo` is not yet clever enough to guess which indexes to try first, so it just tries every possible one. Note that due to the nature of [combinatorics](https://en.wikipedia.org/wiki/Enumerative_combinatorics), queries with many search terms will result in a huge number of [permutations](https://en.wikipedia.org/wiki/Permutation). 4 search terms will test 64 indexes, which will be slow but fine. 5 terms will need to check 325 indexes, which is a really long wait. Anything more than that is not worth doing.
 
 ### `explain`
 
@@ -200,6 +114,92 @@ const flamongo = require('flamongo');
 flamongo.explain(input, options, /* optional logging function */)
   .then((results) => { /* use results */ });
 ```
+
+### `best-index`
+
+Find the fastest index based on your queries and data.
+
+```
+$ flamongo best-index input.json
+```
+
+Where `input.json` looks something like:
+
+```json
+{
+  "queries": [
+    { "name.first": "Richard", "vegan": true },
+    { "name.first": "John", "vegan": false, "name.last": { "$nin": ["Smith"] } }
+  ],
+  "schema": {
+    "name": {
+      "first": "first",
+      "last": "last"
+    },
+    "vegan": "bool",
+    "birthday": "date",
+    "friends": [{
+      "name": {
+        "first": "first",
+        "last": "last"
+      }
+    }]
+  }
+}
+```
+
+Example output:
+
+```sh
+Connection open
+---------------------------------------------------------------------------------------------
+Running the following query against 4 indexes to find the best index:
+{"name.first":"Richard","vegan":true}
+
+The best index based on your input appears to be vegan_1_name.first_1, which took 0 milliseconds. (102 documents were returned.)
+You can create the index using this key: {"vegan":1,"name.first":1}
+
+Rank  |  Index                 |  Time (ms)  |  Documents examined  |  Keys examined
+1     |  vegan_1_name.first_1  |  0          |  102                 |  102
+2     |  name.first_1_vegan_1  |  1          |  102                 |  102
+3     |  name.first_1          |  1          |  182                 |  182
+4     |  vegan_1               |  53         |  45141               |  45141
+
+---------------------------------------------------------------------------------------------
+Running the following query against 15 indexes to find the best index:
+{"name.first":"John","vegan":false,"name.last":{"$nin":["Smith"]}}
+
+The best index based on your input appears to be vegan_1_name.first_1, which took 1 milliseconds. (86 documents were returned.)
+You can create the index using this key: {"vegan":1,"name.first":1}
+
+Rank  |  Index                             |  Time (ms)  |  Documents examined  |  Keys examined
+1     |  vegan_1_name.first_1              |  1          |  86                  |  86
+2     |  name.first_1_vegan_1_name.last_1  |  1          |  86                  |  87
+3     |  name.first_1                      |  1          |  161                 |  161
+4     |  name.first_1_name.last_1          |  1          |  161                 |  162
+5     |  name.last_1_name.first_1          |  9          |  161                 |  1160
+6     |  name.first_1_vegan_1              |  11         |  86                  |  86
+7     |  vegan_1                           |  52         |  44859               |  44859
+8     |  vegan_1_name.last_1               |  91         |  44761               |  44763
+9     |  name.last_1_vegan_1               |  94         |  44761               |  45261
+10    |  name.last_1                       |  164        |  89811               |  89812
+```
+
+#### Alias
+
+`flamongo best`
+
+#### Programmatic API
+
+```js
+const flamongo = require('flamongo');
+flamongo.bestIndex(input, options, /* optional logging function */)
+  .then((results) => { /* use results */ });
+```
+
+#### Performance
+
+`flamongo` is not yet clever enough to guess which indexes to try first, so it just tries every possible one. Note that due to the nature of [combinatorics](https://en.wikipedia.org/wiki/Enumerative_combinatorics), queries with many search terms will result in a huge number of [permutations](https://en.wikipedia.org/wiki/Permutation). 4 search terms will test 64 indexes, which will be slow but fine. 5 terms will need to check 325 indexes, which is a really long wait. Anything more than that is not worth doing.
 
 ## Input format
 
