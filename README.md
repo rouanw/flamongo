@@ -256,6 +256,8 @@ Option|Description|Default
 `numberOfRecords` | Number of stub records to insert, using the specified `schema` | `90000`
 `verbose` | Print out the full output of MongoDB's [explain results](https://docs.mongodb.com/manual/reference/explain-results/) | `false`
 
+You can pass options on the command line. Example: `flamongo explain --numberOfRecords 240000 --preserveData true flamongo.json`
+
 ## Further reading
 
 Reading the Mongo Docs on [Index Strategies](https://docs.mongodb.com/manual/applications/indexes/) will help you understand what factors influence how performant an index is. Some queries will actually be faster without any indexes!
