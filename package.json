@@ -41,7 +41,7 @@
     "index-mixer": "^0.2.0",
     "lodash": "^4.17.15",
     "minimist": "^1.2.0",
-    "mongodb": "^2.2.29",
+    "mongodb": "^3.3.5",
     "randoc": "^1.0.0"
   },
   "devDependencies": {
