@@ -4,14 +4,3 @@ node_js:
   - "node"
 script:
   - npm run lint
-deploy:
-  provider: npm
-  email: Rouan.Wilsenach@tesglobal.com
-  api_key:
-    secure: "goDWT+Imzs9vGpQjE9sn32Ua+TjyI4t3ppKXibKN/VFGRzOmABjJTkomEaQpbxMOa031s7O3iU52MSafAB+WwxssNB32QLfc7MCyBVEBpIXyzG9O0Lo4m2q5itNtiYKTCxdH
-f3WoGUmOuA42ZphecG5c3RscaSRsqA3ciKozvwEtFKBCTGlsM7gQsltEQ1q4BplADDs+1xiQNQmEylQ295rrUqRQMsebkCLu+1z7EKD1d2El9hkloD0Lp497q3e+eYEXbYxMRVLS9aQ8xQy
-cmbwSPQmHzYIOozNHd+VrcAY3kPDi57x9VPyrro8dGqxrU/2r+DFqkKT8fPpipTrfmQoEbpcQ+pjoK02P5wIjXDG8SGOodE+2Og6U13VeoQB6pvBulwJeTkihmd89cG0YKabmoM4bK2td7j
-f8e7+2cxfR7OV6u4o3plZ23EMic71as1jpydLubh4h3m0Hw9/A9FaaG8aKRP/VncpxVUrkiTMX4KneaXOhzhjBOg5L0w6111+Ma3AofJt9t5G3M6kbTnnNiUXGGKauwxEX/3ocN9SYzfpAu
-7ZQ90M9c1/70swmwOkSRHhQt75zDtC7iNEVDqQaAH8I0v749B74C52+zqyl9X+YdAJ1BjG0Hi/4JyC9lHm9jwbUuL9EuwqWpmeW8vDJ9JlNDFQnP3wfFJ7THto="
-  on:
-    tags: true
