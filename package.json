@@ -42,7 +42,7 @@
     "lodash": "^4.17.15",
     "minimist": "^1.2.5",
     "mongodb": "^3.5.2",
-    "randoc": "^1.0.1"
+    "randoc": "^1.1.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
