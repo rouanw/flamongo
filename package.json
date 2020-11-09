@@ -38,7 +38,7 @@
     "bluebird": "^3.7.2",
     "chalk": "^1.1.3",
     "columnify": "^1.5.4",
-    "index-mixer": "^0.2.0",
+    "index-mixer": "^0.2.1",
     "lodash": "^4.17.15",
     "minimist": "^1.2.5",
     "mongodb": "^3.5.2",
